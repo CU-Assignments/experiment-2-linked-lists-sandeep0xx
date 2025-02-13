@@ -1,0 +1,13 @@
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack = []
+        parts = path.split('/')  # Split by '/'
+        
+        for part in parts:
+            if part == "..":
+                if stack:  # Go back to the parent directory
+                    stack.pop()
+            elif part and part != ".":  # Ignore empty parts and '.'
+                stack.append(part)
+        
+        return "/" + "/".join(stack)  # Join elements to form the canonical path
